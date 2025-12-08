@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>POWERPEACE | Official Artist Hub</title>
+<title>POWERPEACE | Official Music Hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --main: #ff0055;
-    --dark: #0b0b0b;
-    --card: #151515;
+    --accent: #ff0055;
+    --bg: #080808;
+    --card: #121212;
+    --soft: #9a9a9a;
 }
 
 * {
@@ -22,141 +23,141 @@
 }
 
 body {
-    background: radial-gradient(circle at top, #1a1a1a, var(--dark));
+    background: radial-gradient(circle at top, #1a1a1a 0%, var(--bg) 55%);
     color: #fff;
 }
 
 /* HERO */
 .hero {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    justify-content: center;
     text-align: center;
+    padding: 40px 20px;
 }
 
 .hero h1 {
-    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    font-size: clamp(3.4rem, 7vw, 5.8rem);
     font-weight: 800;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
 }
 
 .hero .realname {
-    margin-top: 10px;
-    font-size: 0.95rem;
-    opacity: 0.6;
+    margin-top: 12px;
+    font-size: 0.9rem;
     letter-spacing: 2px;
+    color: var(--soft);
 }
 
 .hero p {
     max-width: 620px;
-    margin: 35px auto;
-    font-size: 1.1rem;
-    opacity: 0.85;
-}
-
-/* MAIN CTA */
-.cta-main {
-    margin-top: 35px;
-}
-
-.cta-main a {
-    display: inline-block;
-    padding: 18px 45px;
-    border-radius: 40px;
-    background: linear-gradient(135deg, var(--main), #ff4d82);
+    margin: 40px auto;
     font-size: 1.05rem;
+    color: #cfcfcf;
+}
+
+/* CTA */
+.main-cta {
+    margin-top: 30px;
+}
+
+.main-cta a {
+    padding: 18px 52px;
+    border-radius: 50px;
     font-weight: 600;
-    transition: 0.3s;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, var(--accent), #ff4d7d);
+    transition: 0.3s ease;
 }
 
-.cta-main a:hover {
-    transform: scale(1.06);
-    filter: brightness(1.15);
+.main-cta a:hover {
+    transform: scale(1.07);
 }
 
-/* SOCIAL BAR */
+/* SOCIALS */
 .socials {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-top: 35px;
+    gap: 35px;
+    margin-top: 45px;
     flex-wrap: wrap;
 }
 
 .socials a {
-    opacity: 0.7;
-    transition: 0.25s;
-    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--soft);
+    transition: 0.25s ease;
 }
 
 .socials a:hover {
-    opacity: 1;
+    color: #fff;
 }
 
 /* SECTIONS */
 section {
-    padding: 90px 20px;
-    max-width: 1100px;
+    padding: 100px 20px;
+    max-width: 1150px;
     margin: auto;
 }
 
 section h2 {
     text-align: center;
-    font-size: 2.3rem;
-    margin-bottom: 60px;
+    font-size: 2.4rem;
+    margin-bottom: 70px;
+    font-weight: 700;
 }
 
 /* PLATFORMS */
 .platforms {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 32px;
 }
 
 .platform {
     background: var(--card);
-    padding: 30px;
-    border-radius: 22px;
+    padding: 32px;
     text-align: center;
+    border-radius: 24px;
     font-weight: 600;
+    letter-spacing: 0.5px;
     transition: 0.3s;
 }
 
 .platform:hover {
-    transform: translateY(-8px);
-    background: #1f1f1f;
+    transform: translateY(-10px);
+    background: #1c1c1c;
 }
 
 /* PREVIEWS */
 .previews {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 35px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
 }
 
 .preview {
     background: var(--card);
-    padding: 28px;
-    border-radius: 22px;
+    padding: 30px;
+    border-radius: 24px;
 }
 
 .preview h3 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 audio, iframe {
     width: 100%;
-    border-radius: 14px;
+    border-radius: 16px;
 }
 
 /* FOOTER */
 footer {
-    padding: 60px 20px;
+    padding: 70px 20px;
     text-align: center;
-    opacity: 0.6;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--soft);
 }
 </style>
 </head>
@@ -170,11 +171,11 @@ footer {
         <div class="realname">Matías Taibo</div>
 
         <p>
-            Artista independiente. Nueva música, identidad propia y adelantos exclusivos.
+            Artista independiente. Sonido propio, lanzamientos constantes y adelantos exclusivos.
         </p>
 
-        <div class="cta-main">
-            <a href="#music">Escuchar ahora</a>
+        <div class="main-cta">
+            <a href="#music">Escuchar música</a>
         </div>
 
         <div class="socials">
@@ -187,7 +188,7 @@ footer {
 
 <!-- MUSIC -->
 <section id="music">
-<h2>Escúchalo en</h2>
+<h2>Disponible en</h2>
 
 <div class="platforms">
     <a class="platform" href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank">
@@ -198,6 +199,14 @@ footer {
         Apple Music
     </a>
 
+    <a class="platform" href="https://link.deezer.com/s/31Plv6FXvdjRBSCPOJGKA" target="_blank">
+        Deezer
+    </a>
+
+    <a class="platform" href="https://music.amazon.com/artists/B0BBP4DM1V/powerpeace" target="_blank">
+        Amazon Music
+    </a>
+
     <a class="platform" href="https://soundcloud.com/powerpeace-music" target="_blank">
         SoundCloud
     </a>
@@ -206,7 +215,7 @@ footer {
 
 <!-- PREVIEWS -->
 <section>
-<h2>Últimos adelantos</h2>
+<h2>Adelantos</h2>
 
 <div class="previews">
     <div class="preview">
@@ -228,7 +237,7 @@ footer {
 </section>
 
 <footer>
-© 2025 POWERPEACE · Official Artist Website
+© 2025 POWERPEACE · Official Artist Hub
 </footer>
 
 </body>
