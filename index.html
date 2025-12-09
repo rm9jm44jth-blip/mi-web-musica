@@ -4,19 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POWERPEACE | Artista Oficial - Música en Todas las Plataformas</title>
-    <meta name="description" content="PowerPeace (Matías Taibo) - Artista independiente con sonido único. Escucha mi nuevo lanzamiento en todas las plataformas de streaming.">
+    <meta name="description" content="PowerPeace (Matías Taibo) - Artista independiente con sonido único. Escucha mi nuevo lanzamiento 'MIENTRAS YO GANO' en todas las plataformas de streaming.">
     <meta name="author" content="Matías Taibo">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="POWERPEACE | Música Original">
-    <meta property="og:description" content="Escucha el nuevo lanzamiento de PowerPeace en todas las plataformas digitales">
+    <meta property="og:title" content="POWERPEACE | Artista Oficial - Música Original">
+    <meta property="og:description" content="Escucha el nuevo lanzamiento 'MIENTRAS YO GANO' de PowerPeace en todas las plataformas digitales">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.ytimg.com/vi/VjdFM17OoGM/maxresdefault.jpg">
+    <meta property="og:url" content="https://powerpeace.com">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="POWERPEACE | Artista Oficial">
+    <meta name="twitter:description" content="Nuevo lanzamiento 'MIENTRAS YO GANO' disponible en todas las plataformas">
     
     <!-- Fuentes premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
     
     <style>
         :root {
@@ -36,8 +46,8 @@
             --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary));
             --border-radius: 24px;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            --shadow-hover: 0 30px 80px rgba(255, 0, 85, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 30px 80px rgba(255, 0, 85, 0.3);
         }
 
         * {
@@ -68,7 +78,7 @@
             line-height: 1.1;
         }
 
-        /* Loader elegante */
+        /* Loader premium */
         .loader {
             position: fixed;
             top: 0;
@@ -114,7 +124,7 @@
             font-weight: 500;
         }
 
-        /* Navbar elegante */
+        /* Navbar profesional */
         .navbar {
             position: fixed;
             top: 0;
@@ -124,20 +134,33 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .navbar.scrolled {
             padding: 1rem 5%;
-            background: rgba(5, 5, 5, 0.95);
+            background: rgba(5, 5, 5, 0.98);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 900;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -147,33 +170,44 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            text-decoration: none;
-            transition: var(--transition);
         }
 
-        .logo:hover {
-            transform: scale(1.05);
+        .verified-badge {
+            background: var(--gradient);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+            animation: pulse 2s infinite;
         }
 
-        .logo i {
-            font-size: 1.5rem;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         .nav-links {
             display: flex;
-            gap: 2.8rem;
+            gap: 3rem;
             align-items: center;
         }
 
         .nav-links a {
             color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: var(--transition);
             position: relative;
             padding: 0.5rem 0;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .nav-links a:after {
@@ -224,7 +258,7 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Hero Section - Elegante y moderno */
+        /* Hero Section - Profesional */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -242,8 +276,8 @@
             height: 100%;
             background: 
                 radial-gradient(circle at 15% 25%, rgba(255, 0, 85, 0.15) 0%, transparent 45%),
-                radial-gradient(circle at 85% 15%, rgba(138, 43, 226, 0.1) 0%, transparent 45%),
-                radial-gradient(circle at 35% 85%, rgba(0, 212, 255, 0.07) 0%, transparent 45%);
+                radial-gradient(circle at 85% 15%, rgba(138, 43, 226, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 35% 85%, rgba(0, 212, 255, 0.08) 0%, transparent 45%);
             z-index: -2;
         }
 
@@ -270,7 +304,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(3.5rem, 9vw, 6.5rem);
+            font-size: clamp(3.8rem, 9vw, 7rem);
             font-weight: 900;
             margin-bottom: 1.5rem;
             line-height: 1;
@@ -285,12 +319,34 @@
             display: block;
         }
 
+        .artist-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .verified-artist {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
         .hero-subtitle {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             color: var(--text-light);
             margin-bottom: 2.5rem;
             font-weight: 400;
             max-width: 600px;
+            line-height: 1.4;
         }
 
         .artist-badge {
@@ -300,10 +356,10 @@
             font-size: 1.1rem;
             color: var(--text-light);
             padding: 1rem 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
         }
 
@@ -329,7 +385,7 @@
         .btn {
             padding: 1.2rem 2.8rem;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -373,7 +429,7 @@
         .btn-secondary {
             background-color: transparent;
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.15);
         }
 
         .btn-secondary:hover {
@@ -401,7 +457,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .social-link:before {
@@ -427,7 +483,7 @@
             opacity: 1;
         }
 
-        /* Video Preview - Elegante */
+        /* Video Preview - Profesional */
         .video-preview {
             animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
             position: relative;
@@ -438,7 +494,7 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             background: var(--card);
             transform-style: preserve-3d;
             perspective: 1000px;
@@ -452,7 +508,7 @@
             color: white;
             padding: 0.7rem 1.5rem;
             border-radius: 50px;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.9rem;
             z-index: 3;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -460,6 +516,7 @@
             align-items: center;
             gap: 0.5rem;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .video-wrapper {
@@ -479,11 +536,13 @@
             border: none;
         }
 
-        /* Estadísticas Reales - Elegante */
+        /* Estadísticas Reales - Profesional */
         .stats-section {
             padding: 6rem 5%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), transparent);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.03), transparent);
             position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .stats-container {
@@ -497,7 +556,7 @@
         }
 
         .stats-title {
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
@@ -515,23 +574,24 @@
 
         .stats-subtitle {
             color: var(--text-light);
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.3rem;
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.6;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2.5rem;
         }
 
         .stat-card {
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 3.5rem 2.5rem;
             background: rgba(255, 255, 255, 0.02);
             border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
@@ -555,7 +615,7 @@
         }
 
         .stat-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -564,8 +624,8 @@
         }
 
         .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: 4rem;
+            font-weight: 900;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
@@ -573,16 +633,18 @@
             line-height: 1;
             margin-bottom: 0.8rem;
             font-family: 'Poppins', sans-serif;
+            letter-spacing: -1px;
         }
 
         .stat-label {
             color: var(--text-light);
-            font-size: 1rem;
+            font-size: 1.1rem;
             letter-spacing: 1px;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
-        /* Platforms Section - Super elegante */
+        /* Platforms Section - Ultra profesional */
         .section {
             padding: 8rem 5%;
             max-width: 1400px;
@@ -591,11 +653,11 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
         }
 
         .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
@@ -613,25 +675,25 @@
 
         .section-subtitle {
             color: var(--text-light);
-            font-size: 1.3rem;
-            max-width: 700px;
+            font-size: 1.4rem;
+            max-width: 800px;
             margin: 0 auto;
             line-height: 1.8;
         }
 
         .platforms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2.5rem;
         }
 
         .platform-card {
             background: var(--card);
             border-radius: var(--border-radius);
-            padding: 3rem 2.5rem;
+            padding: 3.5rem 2.5rem;
             text-align: center;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -654,12 +716,12 @@
             transform: translateY(-20px);
             background: var(--card-hover);
             box-shadow: var(--shadow);
-            border-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
         .platform-icon {
-            font-size: 4rem;
-            margin-bottom: 2rem;
+            font-size: 4.5rem;
+            margin-bottom: 2.5rem;
             display: block;
             transition: var(--transition);
         }
@@ -669,31 +731,33 @@
         }
 
         .platform-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
-            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
         }
 
         .platform-description {
             color: var(--text-light);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             flex-grow: 1;
             line-height: 1.7;
+            font-size: 1.05rem;
         }
 
         .platform-link {
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            padding: 1rem 2.5rem;
-            background: rgba(255, 255, 255, 0.04);
+            padding: 1.2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50px;
             color: white;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.1);
             letter-spacing: 0.5px;
+            font-size: 1.05rem;
         }
 
         .platform-link:hover {
@@ -703,10 +767,69 @@
             border-color: transparent;
         }
 
-        /* Music Previews elegantes */
+        /* Nuevo Lanzamiento - Profesional */
+        .new-release-section {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.05), rgba(138, 43, 226, 0.05));
+            border-radius: var(--border-radius);
+            padding: 6rem 5rem;
+            text-align: center;
+            margin-top: 5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .new-release-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 0, 85, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .new-release-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .new-release-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .new-release-subtitle {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .release-cta {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Music Previews profesionales */
         .previews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 3rem;
         }
 
@@ -715,7 +838,7 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             height: 100%;
             position: relative;
         }
@@ -727,48 +850,49 @@
         }
 
         .preview-content {
-            padding: 2.5rem;
+            padding: 3rem;
         }
 
         .preview-header {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .preview-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
             background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: white;
             flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.3);
         }
 
         .preview-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             margin-bottom: 0.5rem;
         }
 
         .preview-meta {
             color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 1.8rem;
+            font-size: 1rem;
+            margin-bottom: 2rem;
         }
 
-        /* Newsletter elegante */
+        /* Newsletter profesional */
         .newsletter-section {
-            background: linear-gradient(135deg, rgba(255, 0, 85, 0.07), rgba(138, 43, 226, 0.07));
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.08), rgba(138, 43, 226, 0.08));
             border-radius: var(--border-radius);
-            padding: 5rem 4rem;
+            padding: 6rem 5rem;
             text-align: center;
             margin-top: 5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             overflow: hidden;
         }
@@ -780,26 +904,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 0, 85, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at 70% 30%, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
             z-index: -1;
         }
 
         .newsletter h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1.2rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
         }
 
         .newsletter p {
             color: var(--text-light);
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 3rem;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             line-height: 1.8;
         }
 
         .newsletter-form {
             display: flex;
-            max-width: 550px;
+            max-width: 600px;
             margin: 0 auto;
             gap: 1.2rem;
         }
@@ -814,8 +938,8 @@
             flex: 1;
             padding: 1.2rem 2rem;
             border-radius: 50px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             color: white;
             font-size: 1.05rem;
             transition: var(--transition);
@@ -832,11 +956,11 @@
             color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Footer elegante */
+        /* Footer profesional */
         footer {
             padding: 6rem 5% 3rem;
             background: var(--darker);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             position: relative;
         }
 
@@ -845,15 +969,27 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 4rem;
+            gap: 5rem;
             margin-bottom: 4rem;
         }
 
         .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            margin-bottom: 2.5rem;
             color: var(--text);
-            font-weight: 700;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
         }
 
         .footer-links {
@@ -861,7 +997,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .footer-links a {
@@ -870,21 +1006,22 @@
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 1rem;
             padding: 0.5rem 0;
+            font-size: 1.05rem;
         }
 
         .footer-links a:hover {
             color: var(--primary);
-            transform: translateX(8px);
+            transform: translateX(10px);
         }
 
         .copyright {
             text-align: center;
             color: var(--text-light);
-            font-size: 0.95rem;
+            font-size: 1rem;
             padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -893,6 +1030,7 @@
             color: var(--primary);
             text-decoration: none;
             transition: var(--transition);
+            font-weight: 600;
         }
 
         .copyright a:hover {
@@ -920,14 +1058,14 @@
         .delay-3 { animation-delay: 0.6s; opacity: 0; }
         .delay-4 { animation-delay: 0.8s; opacity: 0; }
 
-        /* Player flotante elegante */
+        /* Player flotante profesional */
         .floating-player {
             position: fixed;
-            bottom: 2.5rem;
-            right: 2.5rem;
+            bottom: 3rem;
+            right: 3rem;
             background: var(--gradient);
             color: white;
-            padding: 1.2rem 2rem;
+            padding: 1.2rem 2.5rem;
             border-radius: 50px;
             display: flex;
             align-items: center;
@@ -937,7 +1075,7 @@
             cursor: pointer;
             transition: var(--transition);
             border: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.05rem;
             letter-spacing: 0.5px;
         }
@@ -951,7 +1089,7 @@
             font-size: 1.3rem;
         }
 
-        /* Progress bar elegante */
+        /* Progress bar profesional */
         .progress-container {
             position: fixed;
             top: 0;
@@ -970,20 +1108,20 @@
             border-radius: 0 2px 2px 0;
         }
 
-        /* Notificación elegante */
+        /* Notificación profesional */
         .notification {
             position: fixed;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 2rem;
+            right: 2rem;
             background: var(--gradient);
             color: white;
-            padding: 1.2rem 1.8rem;
+            padding: 1.5rem 2rem;
             border-radius: 16px;
             box-shadow: var(--shadow);
             z-index: 10000;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
             transform: translateX(120%);
             transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -994,10 +1132,10 @@
         }
 
         .notification i {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
 
-        /* Mobile Menu elegante */
+        /* Mobile Menu profesional */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -1007,8 +1145,8 @@
             background: rgba(5, 5, 5, 0.98);
             z-index: 9999;
             padding: 8rem 2rem 3rem;
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             display: none;
             flex-direction: column;
             justify-content: flex-start;
@@ -1038,21 +1176,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.2rem 2rem;
-            background: rgba(255, 255, 255, 0.04);
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             color: white;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            gap: 1.2rem;
         }
 
         .mobile-menu-link:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 0, 85, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 0, 85, 0.3);
             transform: translateY(-5px);
         }
 
@@ -1068,7 +1206,7 @@
             background: none;
             border: none;
             color: white;
-            font-size: 1.8rem;
+            font-size: 2rem;
             cursor: pointer;
             padding: 0.5rem;
             border-radius: 10px;
@@ -1100,6 +1238,11 @@
             .social-links {
                 justify-content: center;
             }
+            
+            .new-release-section,
+            .newsletter-section {
+                padding: 4rem 2rem;
+            }
         }
 
         @media (max-width: 992px) {
@@ -1122,6 +1265,10 @@
             .platforms-grid {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -1130,44 +1277,40 @@
             }
             
             .hero h1 {
-                font-size: clamp(2.8rem, 10vw, 4.5rem);
+                font-size: clamp(3rem, 10vw, 5rem);
             }
             
             .hero-subtitle {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
+            }
+            
+            .new-release-title {
+                font-size: 2.5rem;
             }
             
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
             .stat-card {
-                padding: 2rem 1.5rem;
+                padding: 3rem 2rem;
             }
             
             .stat-number {
-                font-size: 2.8rem;
+                font-size: 3.5rem;
             }
             
             .platforms-grid {
                 grid-template-columns: 1fr;
             }
             
-            .newsletter-section {
-                padding: 3.5rem 2rem;
-            }
-            
-            .newsletter h3 {
-                font-size: 2rem;
+            .section-title {
+                font-size: 2.5rem;
             }
         }
 
         @media (max-width: 576px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .btn {
                 width: 100%;
                 justify-content: center;
@@ -1177,15 +1320,24 @@
                 flex-direction: column;
             }
             
-            .section-title {
-                font-size: 2.2rem;
+            .release-cta {
+                flex-direction: column;
             }
             
             .floating-player {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                padding: 1rem 1.5rem;
+                bottom: 2rem;
+                right: 2rem;
+                padding: 1rem 2rem;
                 font-size: 0.9rem;
+            }
+            
+            .new-release-section,
+            .newsletter-section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .newsletter h3 {
+                font-size: 2.5rem;
             }
         }
 
@@ -1203,10 +1355,10 @@
         /* Back to top button */
         .back-to-top {
             position: fixed;
-            bottom: 5rem;
-            right: 2.5rem;
-            width: 50px;
-            height: 50px;
+            bottom: 6rem;
+            right: 3rem;
+            width: 60px;
+            height: 60px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50%;
@@ -1214,12 +1366,13 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             text-decoration: none;
             transition: var(--transition);
             opacity: 0;
             visibility: hidden;
             z-index: 998;
+            backdrop-filter: blur(10px);
         }
 
         .back-to-top.show {
@@ -1231,11 +1384,12 @@
             background: var(--gradient);
             border-color: transparent;
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.3);
         }
     </style>
 </head>
 <body>
-    <!-- Loader elegante -->
+    <!-- Loader profesional -->
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-spinner"></div>
@@ -1251,24 +1405,29 @@
     <!-- Notification -->
     <div class="notification" id="notification">
         <i class="fas fa-music"></i>
-        <span>¡Nuevo lanzamiento disponible!</span>
+        <span>¡Nuevo lanzamiento "MIENTRAS YO GANO" disponible!</span>
     </div>
 
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
-        <a href="#home" class="logo">
-            <i class="fas fa-bolt"></i>
-            POWERPEACE
+        <a href="#home" class="logo-container">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                POWERPEACE
+            </div>
+            <div class="verified-badge">
+                <i class="fas fa-check"></i>
+            </div>
         </a>
         
         <div class="nav-links">
             <a href="#home" class="active">INICIO</a>
             <a href="#stats">ESTADÍSTICAS</a>
             <a href="#music">ESCUCHAR</a>
-            <a href="#previews">NUEVO LANZAMIENTO</a>
+            <a href="#new-release">NUEVO LANZAMIENTO</a>
             <a href="#platforms">PLATAFORMAS</a>
             <div class="nav-cta">
-                <a href="#music" class="btn btn-primary" style="padding: 0.9rem 2rem; font-size: 0.95rem;">
+                <a href="#music" class="btn btn-primary" style="padding: 0.9rem 2.2rem; font-size: 0.95rem;">
                     <i class="fas fa-headphones"></i> ESCUCHAR AHORA
                 </a>
             </div>
@@ -1295,7 +1454,7 @@
             <a href="#music" class="mobile-menu-link">
                 <i class="fas fa-headphones"></i> ESCUCHAR
             </a>
-            <a href="#previews" class="mobile-menu-link">
+            <a href="#new-release" class="mobile-menu-link">
                 <i class="fas fa-play-circle"></i> NUEVO LANZAMIENTO
             </a>
             <a href="#platforms" class="mobile-menu-link">
@@ -1314,9 +1473,15 @@
         
         <div class="hero-content">
             <div class="hero-text">
-                <h1>
-                    <span class="gradient-text">POWER</span>PEACE
-                </h1>
+                <div class="artist-title">
+                    <h1>
+                        <span class="gradient-text">POWER</span>PEACE
+                    </h1>
+                    <div class="verified-artist">
+                        <i class="fas fa-check"></i> ARTISTA VERIFICADO
+                    </div>
+                </div>
+                
                 <p class="hero-subtitle">Sonido auténtico • Evolución constante • Conexión real</p>
                 
                 <div class="artist-badge">
@@ -1329,8 +1494,8 @@
                 </p>
                 
                 <div class="cta-buttons">
-                    <a href="#previews" class="btn btn-primary">
-                        <i class="fas fa-play-circle"></i> VER NUEVO LANZAMIENTO
+                    <a href="#new-release" class="btn btn-primary">
+                        <i class="fas fa-play-circle"></i> NUEVO LANZAMIENTO
                     </a>
                     <a href="#music" class="btn btn-secondary">
                         <i class="fas fa-stream"></i> EXPLORAR CATÁLOGO
@@ -1356,13 +1521,13 @@
             <div class="video-preview">
                 <div class="video-container">
                     <div class="video-badge">
-                        <i class="fas fa-fire"></i> ÚLTIMO LANZAMIENTO
+                        <i class="fas fa-fire"></i> NUEVO LANZAMIENTO
                     </div>
                     
                     <div class="video-wrapper">
                         <iframe 
                             src="https://www.youtube.com/embed/VjdFM17OoGM?si=Lg_I8Gj5nu_yX3zs" 
-                            title="Último lanzamiento de POWERPEACE"
+                            title="Nuevo lanzamiento de POWERPEACE - MIENTRAS YO GANO"
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -1373,7 +1538,7 @@
         </div>
     </section>
 
-    <!-- Estadísticas Reales -->
+    <!-- Estadísticas Reales Actualizadas -->
     <section class="stats-section" id="stats">
         <div class="stats-container">
             <div class="stats-header fade-in">
@@ -1386,7 +1551,7 @@
                     <div class="stat-icon">
                         <i class="fas fa-headphones"></i>
                     </div>
-                    <div class="stat-number" id="totalListeners">87,420</div>
+                    <div class="stat-number" id="totalListeners">600</div>
                     <div class="stat-label">Oyentes Totales</div>
                 </div>
                 
@@ -1394,7 +1559,7 @@
                     <div class="stat-icon">
                         <i class="fas fa-play-circle"></i>
                     </div>
-                    <div class="stat-number" id="totalStreams">2,850,000</div>
+                    <div class="stat-number" id="totalStreams">10,000</div>
                     <div class="stat-label">Reproducciones Totales</div>
                 </div>
                 
@@ -1402,7 +1567,7 @@
                     <div class="stat-icon">
                         <i class="fas fa-music"></i>
                     </div>
-                    <div class="stat-number" id="totalTracks">38</div>
+                    <div class="stat-number" id="totalTracks">23</div>
                     <div class="stat-label">Canciones Publicadas</div>
                 </div>
                 
@@ -1410,7 +1575,7 @@
                     <div class="stat-icon">
                         <i class="fas fa-globe-americas"></i>
                     </div>
-                    <div class="stat-number" id="totalCountries">52</div>
+                    <div class="stat-number" id="totalCountries">15</div>
                     <div class="stat-label">Países con Oyentes</div>
                 </div>
             </div>
@@ -1488,10 +1653,34 @@
     </section>
 
     <!-- Nuevo Lanzamiento -->
+    <section class="section" id="new-release">
+        <div class="new-release-section fade-in">
+            <div class="new-release-badge">
+                <i class="fas fa-fire"></i> NUEVO LANZAMIENTO
+            </div>
+            
+            <h2 class="new-release-title">"MIENTRAS YO GANO"</h2>
+            
+            <p class="new-release-subtitle">
+                Mi producción más reciente que fusiona elementos urbanos con sonidos electrónicos innovadores. Una declaración de crecimiento personal y éxito continuo en el camino musical.
+            </p>
+            
+            <div class="release-cta">
+                <a href="https://youtu.be/VjdFM17OoGM?si=Lg_I8Gj5nu_yX3zs" target="_blank" class="btn btn-primary" style="padding: 1.2rem 3rem;">
+                    <i class="fab fa-youtube"></i> VER VIDEO OFICIAL
+                </a>
+                <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="btn btn-secondary" style="padding: 1.2rem 3rem;">
+                    <i class="fas fa-stream"></i> ESCUCHAR EN STREAMING
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Previews -->
     <section class="section" id="previews">
         <div class="section-header">
-            <h2 class="section-title">MI ÚLTIMO LANZAMIENTO</h2>
-            <p class="section-subtitle">Descubre mi producción más reciente y mantente al día con mi evolución musical.</p>
+            <h2 class="section-title">EXPERIENCIA MUSICAL</h2>
+            <p class="section-subtitle">Descubre mis producciones y mantente al día con mi evolución musical.</p>
         </div>
         
         <div class="previews-grid">
@@ -1502,21 +1691,21 @@
                             <i class="fas fa-fire"></i>
                         </div>
                         <div>
-                            <h3>NUEVO SINGLE - "ENERGÍA PURA"</h3>
-                            <div class="preview-meta">Disponible desde Marzo 2025</div>
+                            <h3>CATÁLOGO COMPLETO</h3>
+                            <div class="preview-meta">23 canciones disponibles</div>
                         </div>
                     </div>
                     
-                    <p style="margin-bottom: 2rem; color: var(--text-light); line-height: 1.8;">
-                        Mi producción más reciente que fusiona elementos electrónicos con ritmos urbanos. Una experiencia auditiva diseñada para conectar con la energía interior y proyectarla al mundo.
+                    <p style="margin-bottom: 2.5rem; color: var(--text-light); line-height: 1.8; font-size: 1.1rem;">
+                        Explora mi discografía completa que abarca diferentes géneros y estilos. Desde mis primeras producciones hasta mis lanzamientos más recientes, cada canción cuenta una parte de mi journey como artista.
                     </p>
                     
                     <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-                        <a href="https://youtu.be/VjdFM17OoGM?si=Lg_I8Gj5nu_yX3zs" target="_blank" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1rem;">
-                            <i class="fab fa-youtube"></i> VER VIDEO COMPLETO
+                        <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="platform-link" style="padding: 1rem 2rem;">
+                            <i class="fab fa-spotify"></i> VER TODO EN SPOTIFY
                         </a>
-                        <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1rem;">
-                            <i class="fas fa-stream"></i> ESCUCHAR EN STREAMING
+                        <a href="#music" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1rem;">
+                            <i class="fas fa-music"></i> VER TODAS LAS PLATAFORMAS
                         </a>
                     </div>
                 </div>
@@ -1529,21 +1718,21 @@
                             <i class="fas fa-headphones"></i>
                         </div>
                         <div>
-                            <h3>PLAYLIST OFICIAL</h3>
-                            <div class="preview-meta">Actualizada cada semana</div>
+                            <h3>PRÓXIMOS LANZAMIENTOS</h3>
+                            <div class="preview-meta">En producción actualmente</div>
                         </div>
                     </div>
                     
-                    <p style="margin-bottom: 2rem; color: var(--text-light); line-height: 1.8;">
-                        Mi selección personal de tracks que definen mi sonido actual, influencias musicales y descubrimientos que me inspiran. Ideal para conocer mi universo musical.
+                    <p style="margin-bottom: 2.5rem; color: var(--text-light); line-height: 1.8; font-size: 1.1rem;">
+                        Siempre trabajando en nueva música. Mantente al tanto de mis próximos lanzamientos y sé el primero en escuchar mis nuevas producciones antes de que salgan oficialmente.
                     </p>
                     
                     <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-                        <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="platform-link" style="padding: 1rem 2rem;">
-                            <i class="fab fa-spotify"></i> SEGUIR EN SPOTIFY
-                        </a>
-                        <a href="#newsletter" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1rem;">
+                        <a href="#newsletter" class="platform-link" style="padding: 1rem 2rem;">
                             <i class="fas fa-bell"></i> RECIBIR AVISOS
+                        </a>
+                        <a href="https://www.instagram.com/powerpeacee/" target="_blank" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1rem;">
+                            <i class="fab fa-instagram"></i> SEGUIR EN INSTAGRAM
                         </a>
                     </div>
                 </div>
@@ -1559,11 +1748,11 @@
                 <p>Recibe contenido exclusivo, avisos de nuevos lanzamientos antes que nadie, acceso a material inédito y convocatorias especiales para mis seguidores más leales.</p>
                 <form class="newsletter-form" id="newsletterForm">
                     <input type="email" class="newsletter-input" placeholder="Ingresa tu mejor email" required>
-                    <button type="submit" class="btn btn-primary" style="padding: 1.2rem 2.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 1.2rem 2.8rem;">
                         <i class="fas fa-paper-plane"></i> SUSCRIBIRME
                     </button>
                 </form>
-                <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-light);">
+                <p style="margin-top: 1.5rem; font-size: 1rem; color: var(--text-light);">
                     <i class="fas fa-lock" style="margin-right: 0.5rem;"></i> Respetamos tu privacidad. Sin spam, solo música y contenido de valor.
                 </p>
             </div>
@@ -1575,7 +1764,7 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>POWERPEACE</h3>
-                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.8;">
+                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.8; font-size: 1.1rem;">
                     Música original creada desde el corazón por Matías Taibo. Cada canción es una pieza única de mi journey artístico y personal.
                 </p>
                 <div class="social-links">
@@ -1600,7 +1789,7 @@
                     <li><a href="#home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
                     <li><a href="#stats"><i class="fas fa-chevron-right"></i> Estadísticas</a></li>
                     <li><a href="#music"><i class="fas fa-chevron-right"></i> Escuchar Música</a></li>
-                    <li><a href="#previews"><i class="fas fa-chevron-right"></i> Nuevo Lanzamiento</a></li>
+                    <li><a href="#new-release"><i class="fas fa-chevron-right"></i> Nuevo Lanzamiento</a></li>
                     <li><a href="#platforms"><i class="fas fa-chevron-right"></i> Todas las Plataformas</a></li>
                 </ul>
             </div>
@@ -1620,7 +1809,7 @@
         <div class="copyright">
             <p>&copy; <span id="currentYear"></span> <strong>POWERPEACE</strong> · Todos los derechos reservados internacionalmente</p>
             <p style="margin-top: 1rem; color: var(--text-lighter);">Artista: <strong>Matías Taibo</strong> · Música original protegida bajo derechos de autor</p>
-            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.3);">
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.3);">
                 Diseñado para la mejor experiencia musical · Hecho con <i class="fas fa-heart" style="color: var(--primary);"></i> para mis oyentes
             </p>
         </div>
@@ -1646,7 +1835,7 @@
             
             // Mostrar notificación
             setTimeout(() => {
-                showNotification('¡Nuevo lanzamiento disponible en YouTube!');
+                showNotification('¡Nuevo lanzamiento "MIENTRAS YO GANO" disponible!');
             }, 1800);
             
             // Actualizar año en copyright
@@ -1761,7 +1950,7 @@
         // Contadores animados para estadísticas (CON TUS NÚMEROS REALES)
         function animateCounter(element, target, suffix = '') {
             let current = 0;
-            const increment = target / 100;
+            const increment = target / 50;
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
@@ -1770,7 +1959,7 @@
                 } else {
                     element.textContent = Math.floor(current).toLocaleString() + suffix;
                 }
-            }, 20);
+            }, 30);
         }
 
         // Observar elementos de estadísticas para animarlos cuando sean visibles
@@ -1779,15 +1968,15 @@
                 if (entry.isIntersecting) {
                     const element = entry.target;
                     
-                    // TUS ESTADÍSTICAS REALES COMBINADAS
+                    // TUS ESTADÍSTICAS REALES ACTUALIZADAS
                     if (element.id === 'totalListeners') {
-                        animateCounter(element, 87420);
+                        animateCounter(element, 600);
                     } else if (element.id === 'totalStreams') {
-                        animateCounter(element, 2850000);
+                        animateCounter(element, 10000);
                     } else if (element.id === 'totalTracks') {
-                        animateCounter(element, 38);
+                        animateCounter(element, 23);
                     } else if (element.id === 'totalCountries') {
-                        animateCounter(element, 52);
+                        animateCounter(element, 15);
                     }
                     
                     observer.unobserve(element);
@@ -1814,7 +2003,7 @@
         // Crear partículas de fondo
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
                 particle.style.position = 'absolute';
                 const size = Math.random() * 6 + 2;
@@ -1846,10 +2035,9 @@
         
         createParticles();
 
-        // Efecto de sonido al hacer clic en botones (opcional)
+        // Efecto al hacer clic en botones
         document.querySelectorAll('.btn, .platform-link, .social-link').forEach(button => {
             button.addEventListener('click', function() {
-                // Puedes añadir aquí un efecto visual adicional
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     this.style.transform = '';
@@ -1859,7 +2047,6 @@
 
         // Detectar preferencia de color del sistema
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-            // Si el usuario prefiere tema claro, ajustamos ligeramente los colores
             document.documentElement.style.setProperty('--text-light', '#666666');
             document.documentElement.style.setProperty('--text-lighter', '#888888');
         }
