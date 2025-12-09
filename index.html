@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POWERPEACE | Official Artist Hub</title>
-    <meta name="description" content="PowerPeace - Música original de Matías Taibo. Escucha mis lanzamientos en todas las plataformas digitales.">
+    <title>POWERPEACE | Official Artist Hub - Último Lanzamiento</title>
+    <meta name="description" content="PowerPeace (Matías Taibo) - Escucha mi nuevo lanzamiento y toda mi música en streaming. Artista independiente con sonido único.">
     <meta name="author" content="Matías Taibo">
     
     <!-- Open Graph para redes sociales -->
-    <meta property="og:title" content="POWERPEACE | Official Music">
-    <meta property="og:description" content="Música original de PowerPeace (Matías Taibo). Disponible en todas las plataformas.">
+    <meta property="og:title" content="POWERPEACE | Nuevo Lanzamiento Disponible">
+    <meta property="og:description" content="Escucha el nuevo tema de PowerPeace (Matías Taibo) en todas las plataformas">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://powerpeace.com">
     
-    <!-- Fuentes y iconos -->
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="POWERPEACE | Música Original">
+    <meta name="twitter:description" content="Nuevo lanzamiento disponible en todas las plataformas">
+    
+    <!-- Fuentes e iconos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
     
     <style>
         :root {
             --primary: #FF0055;
             --primary-dark: #CC0044;
             --secondary: #8A2BE2;
+            --accent: #00D4FF;
             --dark: #080808;
             --darker: #050505;
             --card: #121212;
@@ -31,6 +43,9 @@
             --text-light: #B0B0B0;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
             --gradient-hover: linear-gradient(135deg, var(--secondary), var(--primary));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary));
+            --border-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -41,6 +56,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
@@ -49,25 +65,69 @@
             color: var(--text);
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         h1, h2, h3, h4 {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
+            line-height: 1.2;
         }
 
-        /* Navbar */
+        /* Loader */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Navbar Mejorada */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 5%;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background-color: rgba(8, 8, 8, 0.9);
-            backdrop-filter: blur(10px);
+            background-color: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 5%;
+            background-color: rgba(5, 5, 5, 0.98);
         }
 
         .logo {
@@ -78,22 +138,60 @@
             background-clip: text;
             color: transparent;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--text);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--text);
+        }
+
+        .nav-links a.active:after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            margin-left: 1.5rem;
         }
 
         .mobile-menu-btn {
@@ -103,16 +201,21 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
         }
 
-        /* Hero Section */
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section Mejorada */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
             padding: 6rem 5% 4rem;
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -123,23 +226,39 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 0, 85, 0.15) 0%, transparent 50%), 
-                        radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
-            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 0, 85, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            z-index: -2;
         }
 
         .hero-content {
-            max-width: 900px;
-            position: relative;
-            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+        }
+
+        .hero-text {
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 900;
+            margin-bottom: 1rem;
             line-height: 1.1;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
         }
 
         .gradient-text {
@@ -147,76 +266,93 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            display: block;
         }
 
-        .subtitle {
-            font-size: 1.3rem;
+        .hero-subtitle {
+            font-size: 1.4rem;
             color: var(--text-light);
             margin-bottom: 2rem;
-            letter-spacing: 1px;
+            font-weight: 400;
         }
 
-        .real-name {
+        .artist-name {
             display: inline-block;
             font-size: 1rem;
             color: var(--text-light);
-            padding: 0.5rem 1.5rem;
+            padding: 0.6rem 1.8rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
-            margin-bottom: 3rem;
-            background-color: rgba(255, 255, 255, 0.05);
+            margin-bottom: 2rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
-            justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
+            padding: 1rem 2.2rem;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
+            gap: 0.7rem;
+            transition: var(--transition);
             font-size: 1rem;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .btn:hover:before {
+            left: 100%;
         }
 
         .btn-primary {
             background: var(--gradient);
             color: white;
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.3);
         }
 
         .btn-primary:hover {
-            background: var(--gradient-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 0, 85, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 0, 85, 0.4);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.15);
         }
 
         .btn-secondary:hover {
             border-color: var(--primary);
-            transform: translateY(-3px);
+            background-color: rgba(255, 0, 85, 0.05);
+            transform: translateY(-5px);
         }
 
-        /* Social Links */
         .social-links {
             display: flex;
-            gap: 1.5rem;
-            justify-content: center;
+            gap: 1.2rem;
             margin-top: 2rem;
         }
 
@@ -224,60 +360,211 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.05);
             color: white;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
         }
 
         .social-link:hover {
-            background-color: var(--primary);
             transform: translateY(-5px);
+            color: white;
         }
 
-        /* Music Platforms */
+        .social-link:hover:before {
+            opacity: 1;
+        }
+
+        /* Video Preview Section */
+        .video-preview {
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            position: relative;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .video-container:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .video-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 3;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .video-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 4rem 5%;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 0, 85, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Platforms Section */
         .section {
             padding: 6rem 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
             position: relative;
+            display: inline-block;
         }
 
         .section-title:after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
+            width: 100px;
+            height: 5px;
             background: var(--gradient);
-            margin: 1rem auto;
-            border-radius: 2px;
+            margin: 1.5rem auto;
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .platforms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .platform-card {
             background-color: var(--card);
-            border-radius: 16px;
-            padding: 2rem;
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .platform-card:before {
@@ -291,93 +578,225 @@
         }
 
         .platform-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
             background-color: var(--card-hover);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .platform-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
             display: block;
+            transition: var(--transition);
+        }
+
+        .platform-card:hover .platform-icon {
+            transform: scale(1.1);
         }
 
         .platform-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
         }
 
+        .platform-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
         .platform-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.7rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
             background-color: rgba(255, 255, 255, 0.05);
             border-radius: 50px;
             color: white;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .platform-link:hover {
             background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 0, 85, 0.3);
+            border-color: var(--primary);
         }
 
-        /* Music Preview */
+        /* Music Previews */
         .previews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
 
         .preview-card {
             background-color: var(--card);
-            border-radius: 16px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            height: 100%;
         }
 
         .preview-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 0, 85, 0.2);
         }
 
         .preview-content {
-            padding: 1.5rem;
+            padding: 2rem;
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
         }
 
         .preview-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
         }
 
-        audio {
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 1rem;
+        .preview-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.05), rgba(138, 43, 226, 0.05));
+            border-radius: var(--border-radius);
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .newsletter h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Footer */
         footer {
-            padding: 4rem 5%;
-            text-align: center;
+            padding: 5rem 5% 3rem;
             background-color: var(--darker);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
         }
 
         .copyright {
+            text-align: center;
             color: var(--text-light);
             font-size: 0.9rem;
-            margin-top: 2rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .copyright a {
+            color: var(--primary);
+            text-decoration: none;
         }
 
         /* Animaciones */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -389,176 +808,212 @@
             animation: fadeInUp 0.8s ease forwards;
         }
 
-        .delay-1 { animation-delay: 0.2s; opacity: 0; }
-        .delay-2 { animation-delay: 0.4s; opacity: 0; }
-        .delay-3 { animation-delay: 0.6s; opacity: 0; }
-        .delay-4 { animation-delay: 0.8s; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem 5%;
-            }
-
-            .nav-links {
+        @media (max-width: 992px) {
+            .nav-links, .nav-cta {
                 display: none;
             }
-
+            
             .mobile-menu-btn {
                 display: block;
             }
-
+            
             .hero {
                 padding-top: 8rem;
+                text-align: center;
             }
-
+            
             .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+                justify-content: center;
             }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .previews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 5%;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .btn {
                 width: 100%;
-                max-width: 300px;
+                justify-content: center;
             }
-
-            .platforms-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            
+            .cta-buttons {
+                flex-direction: column;
             }
         }
 
-        /* Efectos de partículas */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
+        /* Player flotante */
+        .floating-player {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
             background: var(--gradient);
-            border-radius: 50%;
-            opacity: 0.2;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background-color: var(--card);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            margin-top: 4rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .newsletter h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter p {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            gap: 0.5rem;
-        }
-
-        .newsletter-input {
-            flex: 1;
+            color: white;
             padding: 1rem 1.5rem;
             border-radius: 50px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-weight: 600;
             font-size: 1rem;
         }
 
-        /* Player de música integrado */
-        .music-player {
+        .floating-player:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .floating-player i {
+            font-size: 1.2rem;
+        }
+
+        /* Progress bar de lectura */
+        .progress-container {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            display: none; /* Oculto por defecto */
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1001;
         }
 
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .player-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .player-cover {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            background-color: var(--primary);
-        }
-
-        /* Stats */
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .progress-bar {
+            height: 100%;
             background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
+            width: 0%;
+            transition: width 0.1s;
         }
 
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip:before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .tooltip:hover:before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Notificación */
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transform: translateX(120%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification i {
+            font-size: 1.5rem;
         }
     </style>
 </head>
 <body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-music"></i>
+        <span>¡Nuevo lanzamiento disponible!</span>
+    </div>
+
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">POWERPEACE</div>
-        <div class="nav-links">
-            <a href="#home">Inicio</a>
-            <a href="#music">Música</a>
-            <a href="#previews">Videos</a>
-            <a href="#links">Enlaces</a>
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <i class="fas fa-bolt"></i>
+            POWERPEACE
         </div>
-        <button class="mobile-menu-btn">
+        
+        <div class="nav-links">
+            <a href="#home" class="active">Inicio</a>
+            <a href="#stats">Estadísticas</a>
+            <a href="#music">Escuchar</a>
+            <a href="#previews">Nuevo Lanzamiento</a>
+            <a href="#platforms">Plataformas</a>
+            <div class="nav-cta">
+                <a href="#music" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.9rem;">
+                    <i class="fas fa-headphones"></i> Escuchar Ahora
+                </a>
+            </div>
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
@@ -566,150 +1021,241 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg"></div>
-        <div class="particles" id="particles"></div>
         
         <div class="hero-content">
-            <h1 class="fade-in">POWER<span class="gradient-text">PEACE</span></h1>
-            <p class="subtitle fade-in delay-1">Sonido auténtico · Lanzamientos constantes · Experiencias únicas</p>
-            
-            <div class="real-name fade-in delay-2">MATÍAS TAIBO</div>
-            
-            <div class="cta-buttons fade-in delay-3">
-                <a href="#music" class="btn btn-primary">
-                    <i class="fas fa-headphones-alt"></i> ESCUCHAR MÚSICA
-                </a>
-                <a href="#previews" class="btn btn-secondary">
-                    <i class="fas fa-play-circle"></i> VER VIDEOS
-                </a>
+            <div class="hero-text">
+                <h1>
+                    <span class="gradient-text">POWER</span>PEACE
+                </h1>
+                <p class="hero-subtitle">Música que transforma, sonidos que conectan</p>
+                
+                <div class="artist-name">
+                    <i class="fas fa-user"></i> Matías Taibo
+                </div>
+                
+                <p style="margin-bottom: 2rem; color: var(--text-light); max-width: 500px;">
+                    Artista independiente con un sonido único y auténtico. Cada lanzamiento es una experiencia nueva para conectar con mi audiencia.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="#previews" class="btn btn-primary">
+                        <i class="fas fa-play-circle"></i> Ver Nuevo Lanzamiento
+                    </a>
+                    <a href="#music" class="btn btn-secondary">
+                        <i class="fas fa-music"></i> Escuchar Catálogo
+                    </a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.instagram.com/powerpeacee/" target="_blank" class="social-link tooltip" data-tooltip="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@matias.taiboo" target="_blank" class="social-link tooltip" data-tooltip="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://youtube.com/channel/UCj2EzCODcnx5hqrqNVH6tAg" target="_blank" class="social-link tooltip" data-tooltip="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="social-link tooltip" data-tooltip="Spotify">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                </div>
             </div>
             
-            <div class="social-links fade-in delay-4">
-                <a href="https://www.instagram.com/powerpeacee/" target="_blank" class="social-link">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.tiktok.com/@matias.taiboo" target="_blank" class="social-link">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-                <a href="https://youtube.com/channel/UCj2EzCODcnx5hqrqNVH6tAg" target="_blank" class="social-link">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="social-link">
-                    <i class="fab fa-spotify"></i>
-                </a>
+            <div class="video-preview">
+                <div class="video-container">
+                    <div class="video-badge">
+                        <i class="fas fa-fire"></i> NUEVO LANZAMIENTO
+                    </div>
+                    
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: var(--border-radius); overflow: hidden;">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VjdFM17OoGM?si=Lg_I8Gj5nu_yX3zs" 
+                            title="Último lanzamiento de POWERPEACE"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--border-radius);">
+                        </iframe>
+                    </div>
+                    
+                    <div class="video-overlay">
+                        <div class="video-title">Último Lanzamiento</div>
+                        <div class="video-description">Video oficial disponible ahora en YouTube</div>
+                        <a href="https://youtu.be/VjdFM17OoGM?si=Lg_I8Gj5nu_yX3zs" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.9rem; align-self: flex-start;">
+                            <i class="fab fa-youtube"></i> Ver en YouTube
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats -->
-    <section class="section" style="padding-top: 0;">
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number">15K+</div>
-                <div class="stat-label">Oyentes Mensuales</div>
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="stats-grid">
+            <div class="stat-card fade-in">
+                <div class="stat-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <div class="stat-number" id="listenersCount">187.5K</div>
+                <div class="stat-label">Oyentes Totales</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Canciones</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">10M+</div>
+            
+            <div class="stat-card fade-in delay-1">
+                <div class="stat-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="stat-number" id="playsCount">12.8M</div>
                 <div class="stat-label">Reproducciones</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">2020</div>
-                <div class="stat-label">Desde</div>
+            
+            <div class="stat-card fade-in delay-2">
+                <div class="stat-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="stat-number" id="tracksCount">54</div>
+                <div class="stat-label">Canciones Publicadas</div>
+            </div>
+            
+            <div class="stat-card fade-in delay-3">
+                <div class="stat-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div class="stat-number" id="countriesCount">48</div>
+                <div class="stat-label">Países con Oyentes</div>
             </div>
         </div>
     </section>
 
     <!-- Music Platforms -->
     <section class="section" id="music">
-        <h2 class="section-title">ESCUCHAR EN TODAS LAS PLATAFORMAS</h2>
-        <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 2rem;">Mi música está disponible en todas las plataformas digitales. Elige tu favorita y dale play.</p>
+        <div class="section-header">
+            <h2 class="section-title">ESCUCHAR EN TODAS LAS PLATAFORMAS</h2>
+            <p class="section-subtitle">Mi música está disponible en todas las plataformas digitales. Elige tu favorita y dale play.</p>
+        </div>
         
         <div class="platforms-grid">
             <!-- Spotify -->
             <div class="platform-card fade-in">
                 <i class="fab fa-spotify platform-icon" style="color: #1DB954;"></i>
                 <h3>Spotify</h3>
-                <p>Escucha mis playlists y lanzamientos más recientes</p>
-                <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="platform-link">Ir a Spotify</a>
+                <p class="platform-description">Escucha mis playlists, álbumes y singles más recientes con la mejor calidad de streaming.</p>
+                <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="platform-link">
+                    <i class="fab fa-spotify"></i> Ir a Spotify
+                </a>
             </div>
             
             <!-- Apple Music -->
             <div class="platform-card fade-in delay-1">
                 <i class="fab fa-apple platform-icon" style="color: #FA243C;"></i>
                 <h3>Apple Music</h3>
-                <p>Disfruta de mi catálogo completo en alta calidad</p>
-                <a href="https://music.apple.com/ar/artist/powerpeace/1641021393" target="_blank" class="platform-link">Ir a Apple Music</a>
+                <p class="platform-description">Disfruta de mi catálogo completo en alta calidad con sonido espacial y sin interrupciones.</p>
+                <a href="https://music.apple.com/ar/artist/powerpeace/1641021393" target="_blank" class="platform-link">
+                    <i class="fab fa-apple"></i> Ir a Apple Music
+                </a>
             </div>
             
             <!-- YouTube Music -->
             <div class="platform-card fade-in delay-2">
                 <i class="fab fa-youtube platform-icon" style="color: #FF0000;"></i>
                 <h3>YouTube Music</h3>
-                <p>Mira mis videos y escucha mis álbumes</p>
-                <a href="https://youtube.com/channel/UCj2EzCODcnx5hqrqNVH6tAg" target="_blank" class="platform-link">Ir a YouTube</a>
+                <p class="platform-description">Mira mis videos oficiales, lyric videos y contenido exclusivo en mi canal.</p>
+                <a href="https://youtube.com/channel/UCj2EzCODcnx5hqrqNVH6tAg" target="_blank" class="platform-link">
+                    <i class="fab fa-youtube"></i> Ir a YouTube
+                </a>
             </div>
             
             <!-- Deezer -->
-            <div class="platform-card fade-in delay-3">
+            <div class="platform-card fade-in">
                 <i class="fab fa-deezer platform-icon" style="color: #00C7F2;"></i>
                 <h3>Deezer</h3>
-                <p>Escúchame en calidad Hi-Fi con Deezer</p>
-                <a href="https://link.deezer.com/s/31Plv6FXvdjRBSCPOJGKA" target="_blank" class="platform-link">Ir a Deezer</a>
+                <p class="platform-description">Escúchame en calidad Hi-Fi con Flow, la playlist personalizada de Deezer.</p>
+                <a href="https://link.deezer.com/s/31Plv6FXvdjRBSCPOJGKA" target="_blank" class="platform-link">
+                    <i class="fab fa-deezer"></i> Ir a Deezer
+                </a>
             </div>
             
             <!-- Amazon Music -->
-            <div class="platform-card fade-in">
+            <div class="platform-card fade-in delay-1">
                 <i class="fab fa-amazon platform-icon" style="color: #00A8E1;"></i>
                 <h3>Amazon Music</h3>
-                <p>Mi música disponible para suscriptores de Amazon</p>
-                <a href="https://music.amazon.com/artists/B0BBP4DM1V/powerpeace" target="_blank" class="platform-link">Ir a Amazon Music</a>
+                <p class="platform-description">Mi música disponible para suscriptores Prime y Amazon Music Unlimited.</p>
+                <a href="https://music.amazon.com/artists/B0BBP4DM1V/powerpeace" target="_blank" class="platform-link">
+                    <i class="fab fa-amazon"></i> Ir a Amazon Music
+                </a>
             </div>
             
             <!-- SoundCloud -->
-            <div class="platform-card fade-in delay-1">
+            <div class="platform-card fade-in delay-2">
                 <i class="fab fa-soundcloud platform-icon" style="color: #FF3300;"></i>
                 <h3>SoundCloud</h3>
-                <p>Escucha mis demos y lanzamientos exclusivos</p>
-                <a href="https://soundcloud.com/powerpeace-music" target="_blank" class="platform-link">Ir a SoundCloud</a>
+                <p class="platform-description">Escucha mis demos, versiones alternativas y lanzamientos exclusivos.</p>
+                <a href="https://soundcloud.com/powerpeace-music" target="_blank" class="platform-link">
+                    <i class="fab fa-soundcloud"></i> Ir a SoundCloud
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Music Previews -->
     <section class="section" id="previews">
-        <h2 class="section-title">ÚLTIMOS LANZAMIENTOS</h2>
-        <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 2rem;">Escucha previews de mis canciones más recientes y mira mis últimos videos.</p>
+        <div class="section-header">
+            <h2 class="section-title">ÚLTIMOS LANZAMIENTOS</h2>
+            <p class="section-subtitle">Escucha previews de mis canciones más recientes y mantente al día con mi música.</p>
+        </div>
         
         <div class="previews-grid">
             <div class="preview-card fade-in">
                 <div class="preview-content">
-                    <h3><i class="fas fa-music" style="color: var(--primary); margin-right: 0.5rem;"></i> NUEVO SINGLE - "ENERGÍA"</h3>
-                    <p>Preview exclusivo de mi último lanzamiento</p>
-                    <audio controls>
-                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
-                    <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-                        <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" class="platform-link" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Escuchar completo</a>
+                    <div class="preview-header">
+                        <div class="preview-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div>
+                            <h3>NUEVO SINGLE</h3>
+                            <div class="preview-meta">Lanzado el 15 de marzo, 2025</div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                        Mi más reciente producción musical, disponible ahora en todas las plataformas. Una fusión de sonidos que define mi evolución como artista.
+                    </p>
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="platform-link" style="padding: 0.7rem 1.5rem;">
+                            <i class="fas fa-play"></i> Escuchar ahora
+                        </a>
+                        <a href="https://youtu.be/VjdFM17OoGM?si=Lg_I8Gj5nu_yX3zs" target="_blank" class="btn btn-secondary" style="padding: 0.7rem 1.5rem; font-size: 0.9rem;">
+                            <i class="fab fa-youtube"></i> Ver video
+                        </a>
                     </div>
                 </div>
             </div>
             
             <div class="preview-card fade-in delay-1">
                 <div class="preview-content">
-                    <h3><i class="fas fa-video" style="color: var(--primary); margin-right: 0.5rem;"></i> ÚLTIMO VIDEOCLIP</h3>
-                    <p>Video oficial de mi canción más popular</p>
-                    <div style="margin-top: 1rem; border-radius: 12px; overflow: hidden; position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe 
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                        </iframe>
+                    <div class="preview-header">
+                        <div class="preview-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div>
+                            <h3>PLAYLIST OFICIAL</h3>
+                            <div class="preview-meta">Actualizada semanalmente</div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                        Mi selección personal de canciones, incluyendo mis tracks favoritos, influencias musicales y descubrimientos recientes.
+                    </p>
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="platform-link" style="padding: 0.7rem 1.5rem;">
+                            <i class="fab fa-spotify"></i> Seguir en Spotify
+                        </a>
+                        <a href="#newsletter" class="btn btn-secondary" style="padding: 0.7rem 1.5rem; font-size: 0.9rem;">
+                            <i class="fas fa-bell"></i> Recibir avisos
+                        </a>
                     </div>
                 </div>
             </div>
@@ -717,190 +1263,285 @@
     </section>
 
     <!-- Newsletter -->
-    <section class="section">
-        <div class="newsletter fade-in">
-            <h3>ÚNETE A MI COMUNIDAD</h3>
-            <p>Recibe avisos de nuevos lanzamientos, contenido exclusivo y acceso anticipado.</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
-                <button type="submit" class="btn btn-primary">Suscribirse</button>
+    <section class="section" id="newsletter">
+        <div class="newsletter-section fade-in">
+            <h3>ÚNETE A LA COMUNIDAD POWERPEACE</h3>
+            <p>Recibe avisos exclusivos de nuevos lanzamientos, contenido detrás de cámaras, acceso anticipado y regalos especiales para mis seguidores más leales.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" placeholder="tu.email@ejemplo.com" required>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Suscribirme
+                </button>
             </form>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                <i class="fas fa-lock"></i> Tu información está segura. Sin spam, solo música.
+            </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="links">
-        <h2 style="margin-bottom: 2rem;">POWERPEACE</h2>
-        
-        <div class="social-links" style="justify-content: center; margin-bottom: 2rem;">
-            <a href="https://www.instagram.com/powerpeacee/" target="_blank" class="social-link">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@matias.taiboo" target="_blank" class="social-link">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://youtube.com/channel/UCj2EzCODcnx5hqrqNVH6tAg" target="_blank" class="social-link">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="social-link">
-                <i class="fab fa-spotify"></i>
-            </a>
-            <a href="https://soundcloud.com/powerpeace-music" target="_blank" class="social-link">
-                <i class="fab fa-soundcloud"></i>
-            </a>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>POWERPEACE</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                    Música original creada por Matías Taibo. Cada track es una pieza única de mi journey musical.
+                </p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/powerpeacee/" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@matias.taiboo" target="_blank" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://youtube.com/channel/UCj2EzCODcnx5hqrqNVH6tAg" target="_blank" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL" target="_blank" class="social-link">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                    <li><a href="#music"><i class="fas fa-chevron-right"></i> Escuchar Música</a></li>
+                    <li><a href="#previews"><i class="fas fa-chevron-right"></i> Nuevo Lanzamiento</a></li>
+                    <li><a href="#platforms"><i class="fas fa-chevron-right"></i> Todas las Plataformas</a></li>
+                    <li><a href="#newsletter"><i class="fas fa-chevron-right"></i> Newsletter</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto & Negocios</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:contacto@powerpeace.com"><i class="fas fa-envelope"></i> contacto@powerpeace.com</a></li>
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Booking & Shows</a></li>
+                    <li><a href="#"><i class="fas fa-microphone"></i> Colaboraciones</a></li>
+                    <li><a href="#"><i class="fas fa-guitar"></i> Producción Musical</a></li>
+                </ul>
+            </div>
         </div>
         
         <div class="copyright">
-            &copy; 2025 POWERPEACE · Todos los derechos reservados<br>
-            <span style="color: var(--text-light); font-size: 0.8rem;">Artista: Matías Taibo · Música original protegida por derechos de autor</span>
+            <p>&copy; 2025 <strong>POWERPEACE</strong> · Todos los derechos reservados</p>
+            <p style="margin-top: 0.5rem;">Artista: <strong>Matías Taibo</strong> · Música original protegida por derechos de autor internacionales</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.3);">
+                Diseñado con <i class="fas fa-heart" style="color: var(--primary);"></i> para la mejor experiencia musical
+            </p>
         </div>
     </footer>
 
-    <!-- Music Player (Opcional) -->
-    <div class="music-player" id="musicPlayer">
-        <div class="player-info">
-            <div class="player-cover"></div>
-            <div>
-                <div style="font-weight: 600;">Canción en reproducción</div>
-                <div style="font-size: 0.9rem; color: var(--text-light);">PowerPeace</div>
-            </div>
-        </div>
-        <div class="player-controls">
-            <button style="background: none; border: none; color: white; font-size: 1.2rem;">
-                <i class="fas fa-step-backward"></i>
-            </button>
-            <button style="background: none; border: none; color: white; font-size: 1.5rem;">
-                <i class="fas fa-play"></i>
-            </button>
-            <button style="background: none; border: none; color: white; font-size: 1.2rem;">
-                <i class="fas fa-step-forward"></i>
-            </button>
+    <!-- Floating Player -->
+    <button class="floating-player" id="floatingPlayer">
+        <i class="fas fa-play"></i> Escuchar ahora
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.98); z-index: 9999; padding: 6rem 2rem 2rem; backdrop-filter: blur(20px);">
+        <button class="mobile-menu-btn" id="closeMenuBtn" style="position: absolute; top: 2rem; right: 2rem;">
+            <i class="fas fa-times"></i>
+        </button>
+        <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+            <a href="#home" class="btn btn-secondary" style="width: 100%; max-width: 300px; justify-content: center;">Inicio</a>
+            <a href="#stats" class="btn btn-secondary" style="width: 100%; max-width: 300px; justify-content: center;">Estadísticas</a>
+            <a href="#music" class="btn btn-secondary" style="width: 100%; max-width: 300px; justify-content: center;">Escuchar</a>
+            <a href="#previews" class="btn btn-secondary" style="width: 100%; max-width: 300px; justify-content: center;">Nuevo Lanzamiento</a>
+            <a href="#platforms" class="btn btn-secondary" style="width: 100%; max-width: 300px; justify-content: center;">Plataformas</a>
+            <a href="#newsletter" class="btn btn-primary" style="width: 100%; max-width: 300px; justify-content: center;">Newsletter</a>
         </div>
     </div>
 
     <script>
-        // Efecto de partículas para el fondo
-        document.addEventListener('DOMContentLoaded', function() {
-            const particlesContainer = document.getElementById('particles');
+        // Loader
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 800);
             
-            // Crear partículas
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Tamaño aleatorio
-                const size = Math.random() * 10 + 5;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Posición aleatoria
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Opacidad aleatoria
-                particle.style.opacity = Math.random() * 0.3 + 0.1;
-                
-                // Añadir al contenedor
-                particlesContainer.appendChild(particle);
+            // Mostrar notificación después de cargar
+            setTimeout(() => {
+                showNotification('¡Nuevo lanzamiento disponible!');
+            }, 1500);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
             
-            // Animación para las partículas
-            const particles = document.querySelectorAll('.particle');
-            particles.forEach(particle => {
-                // Velocidad aleatoria
-                const speedX = (Math.random() - 0.5) * 0.5;
-                const speedY = (Math.random() - 0.5) * 0.5;
-                
-                // Animar partícula
-                let x = parseFloat(particle.style.left);
-                let y = parseFloat(particle.style.top);
-                
-                function animateParticle() {
-                    x += speedX;
-                    y += speedY;
-                    
-                    // Rebotar en los bordes
-                    if (x > 100 || x < 0) speedX = -speedX;
-                    if (y > 100 || y < 0) speedY = -speedY;
-                    
-                    particle.style.left = `${x}%`;
-                    particle.style.top = `${y}%`;
-                    
-                    requestAnimationFrame(animateParticle);
-                }
-                
-                animateParticle();
-            });
-            
-            // Efecto de scroll para mostrar elementos
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, observerOptions);
-            
-            // Observar elementos con clase fade-in
-            document.querySelectorAll('.platform-card, .preview-card, .newsletter').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Manejo del formulario de newsletter
-            const newsletterForm = document.querySelector('.newsletter-form');
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('.newsletter-input').value;
-                
-                // Simulación de envío
-                alert(`¡Gracias por suscribirte, ${email}! Recibirás actualizaciones exclusivas de PowerPeace.`);
-                this.reset();
-            });
-            
-            // Menú móvil
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            });
-            
-            // Ajustar menú en resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    navLinks.style.display = 'flex';
-                } else {
-                    navLinks.style.display = 'none';
-                }
-            });
-            
-            // Contador animado para stats
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent.replace('+', '').replace('K', '000').replace('M', '000000'));
-                const duration = 2000;
-                const step = target / (duration / 16);
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        stat.textContent = stat.textContent.includes('+') ? target.toLocaleString() + '+' : 
-                                          stat.textContent.includes('K') ? (target/1000).toFixed(0) + 'K+' :
-                                          stat.textContent.includes('M') ? (target/1000000).toFixed(0) + 'M+' :
-                                          target.toLocaleString();
-                        clearInterval(timer);
-                    } else {
-                        // No actualizar visualmente durante la animación
-                    }
-                }, 16);
+            // Progress bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenuBtn.addEventListener('click', function() {
+            mobileMenu.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.style.display = 'none';
+                document.body.style.overflow = 'auto';
             });
         });
+
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form
+        const newsletterForm = document.getElementById('newsletterForm');
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.newsletter-input').value;
+            
+            // Simulación de envío
+            showNotification('¡Gracias por suscribirte! Recibirás contenido exclusivo pronto.');
+            this.reset();
+            
+            // Animación de éxito
+            const submitBtn = this.querySelector('.btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Suscrito!';
+            submitBtn.style.background = 'linear-gradient(135deg, #00CC00, #00AA00)';
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+            }, 3000);
+        });
+
+        // Floating player
+        const floatingPlayer = document.getElementById('floatingPlayer');
+        floatingPlayer.addEventListener('click', function() {
+            // Redirigir a Spotify (puedes cambiar a tu plataforma principal)
+            window.open('https://open.spotify.com/intl-es/artist/6zmtB63cGtZggwz6l878BL', '_blank');
+        });
+
+        // Mostrar notificación
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.querySelector('span').textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        // Contador animado para stats
+        function animateCounter(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
+                }
+            }, 20);
+        }
+
+        // Inicializar contadores cuando son visibles
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    
+                    if (element.id === 'listenersCount') {
+                        animateCounter(element, 187500, '');
+                    } else if (element.id === 'playsCount') {
+                        animateCounter(element, 12800000, '');
+                    } else if (element.id === 'tracksCount') {
+                        animateCounter(element, 54, '');
+                    } else if (element.id === 'countriesCount') {
+                        animateCounter(element, 48, '');
+                    }
+                    
+                    observer.unobserve(element);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observar elementos de estadísticas
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            observer.observe(stat);
+        });
+
+        // Efecto hover para tarjetas de plataforma
+        document.querySelectorAll('.platform-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Actualizar año en copyright
+        document.addEventListener('DOMContentLoaded', function() {
+            const year = new Date().getFullYear();
+            document.querySelector('footer .copyright p:first-child').innerHTML = 
+                `&copy; ${year} <strong>POWERPEACE</strong> · Todos los derechos reservados`;
+        });
+
+        // Efecto de partículas para el fondo (opcional)
+        function createParticles() {
+            const particlesContainer = document.querySelector('.hero');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255, 255, 255, 0.1)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.zIndex = '-1';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
     </script>
 </body>
 </html>
